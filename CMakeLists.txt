@@ -9,4 +9,7 @@ add_executable(SimpleStateMachine main.cpp
         StateMachine/FSM.cpp
         StateMachine/FSM.h
         StateMachine/States.h
-        StateMachine/Events.h)
+        StateMachine/Events.h
+        Tests/TestCase.h
+        Tests/RunTests.cpp
+        Tests/RunTests.h)
