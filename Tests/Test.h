@@ -5,4 +5,4 @@ class Test {
         static bool TestInitToActive();
         static bool TestActiveToFailure();
         static bool TestEmergencyShutdown();
-}; 
+};
