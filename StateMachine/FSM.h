@@ -5,7 +5,7 @@
 
 class FSM {
     public:
-        FSM() : _currentState(INIT) { }
+        FSM() : _currentState(State::INIT) { }
 
         State GetState() const;
         void HandleEvents(const Event &event);

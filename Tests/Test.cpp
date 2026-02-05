@@ -4,24 +4,24 @@
 
 bool Test::TestInitToActive() {
     FSM fsm;
-    constexpr Event event = Activate;
+    constexpr Event event = Event::Activate;
     fsm.HandleEvents(event);
-    return fsm.GetState() == ACTIVE;
+    return fsm.GetState() == State::ACTIVE;
 }
 
 bool Test::TestActiveToFailure() {
     FSM fsm;
-    constexpr Event eventStart = Activate;
+    constexpr Event eventStart = Event::Activate;
     fsm.HandleEvents(eventStart);
 
-    constexpr Event eventFailure = SensorFailure;
+    constexpr Event eventFailure = Event::SensorFailure;
     fsm.HandleEvents(eventFailure);
-    return fsm.GetState() == FAULT;
+    return fsm.GetState() == State::FAULT;
 }
 
 bool Test::TestEmergencyShutdown() {
     FSM fsm;
-    constexpr Event event = EmergencyStop;
+    constexpr Event event = Event::EmergencyStop;
     fsm.HandleEvents(event);
-    return fsm.GetState() == SHUTDOWN;
+    return fsm.GetState() == State::SHUTDOWN;
 }

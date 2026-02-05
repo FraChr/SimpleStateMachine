@@ -1,13 +1,9 @@
-﻿/*
-struct Event {
-    bool Active = false;
-    bool SensorFailure = false;
-    bool EmergencyShutdown = false;
-};
-*/
+﻿#include <iosfwd>
 
-enum Event {
+enum class Event {
     Activate,
     SensorFailure,
     EmergencyStop,
 };
+
+std::ostream& operator<<(std::ostream& os, const Event& event);

@@ -14,4 +14,5 @@ add_executable(SimpleStateMachine main.cpp
         Tests/RunTests.cpp
         Tests/RunTests.h
         RunAppLoop.cpp
-        RunAppLoop.h)
+        RunAppLoop.h
+        StateMachine/Events.cpp)

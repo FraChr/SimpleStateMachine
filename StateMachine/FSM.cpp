@@ -5,25 +5,25 @@ State FSM::GetState() const {
 }
 
 void FSM::HandleEvents(const Event &event) {
-    if (event == EmergencyStop) {
-        _currentState = SHUTDOWN;
+    if (event == Event::EmergencyStop) {
+        _currentState = State::SHUTDOWN;
         return;
     }
 
     switch (_currentState) {
-        case INIT:
-            if (event == Activate) _currentState = ACTIVE;
+        case State::INIT:
+            if (event == Event::Activate) _currentState = State::ACTIVE;
             break;
-        case ACTIVE:
-            if (event == SensorFailure) _currentState = FAULT;
+        case State::ACTIVE:
+            if (event == Event::SensorFailure) _currentState = State::FAULT;
             break;
-        case FAULT:
-            _currentState = SHUTDOWN;
+        case State::FAULT:
+            _currentState = State::SHUTDOWN;
             break;
-        case SHUTDOWN:
+        case State::SHUTDOWN:
             break;
         default:
-            _currentState = SHUTDOWN;
+            _currentState = State::SHUTDOWN;
             break;
     }
 }

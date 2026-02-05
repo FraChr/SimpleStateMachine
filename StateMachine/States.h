@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-enum State {
+enum class State {
     INIT,
     ACTIVE,
     FAULT,

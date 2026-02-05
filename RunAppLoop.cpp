@@ -1,34 +1,31 @@
 ﻿#include "RunAppLoop.h"
-
 #include <chrono>
-#include <exception>
 #include <iostream>
-
 #include "StateMachine/FSM.h"
 #include "StateMachine/States.h"
 
 void RunAppLoop::Run() {
     FSM fsm;
     Event event;
+
     auto next = std::chrono::high_resolution_clock::now();
     const auto interval = std::chrono::seconds(2);
-
 
     event = Event::Activate;
     fsm.HandleEvents(event);
 
     int failureCounter = 0;
+    constexpr int maxUnresolvedFailCount = 3;
 
-    while (fsm.GetState() == ACTIVE || fsm.GetState() == FAULT) {
+    while (fsm.GetState() == State::ACTIVE || fsm.GetState() == State::FAULT) {
         std::cout << "Fail Count: " << failureCounter << std::endl;
 
-        if (failureCounter == 200) {
+        if (failureCounter == maxUnresolvedFailCount) {
             event = Event::EmergencyStop;
             fsm.HandleEvents(event);
         }
 
         char input;
-        /*std::cin >> input;*/
         std::cin.get(input);
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -42,7 +39,7 @@ void RunAppLoop::Run() {
             fsm.HandleEvents(event);
         }
 
-        if (fsm.GetState() == FAULT) {
+        if (fsm.GetState() == State::FAULT) {
             std::cerr << "ERROR: SENSOR FAILURE\n";
             failureCounter++;
         }
@@ -50,7 +47,7 @@ void RunAppLoop::Run() {
         auto now = std::chrono::high_resolution_clock::now();
 
         if (now > next) {
-            std::cout << "Application in state "  << event << std::endl;
+            std::cout << "Application Event: " << event << std::endl;
             next = now + interval;
         }
 

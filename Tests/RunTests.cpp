@@ -1,4 +1,6 @@
 ﻿#include "RunTests.h"
+
+#include <fstream>
 #include <iostream>
 
 void RunTests::ExecuteTests() {
